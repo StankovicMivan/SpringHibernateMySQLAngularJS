@@ -1,0 +1,58 @@
+<div ng-controller="footballCtrl">
+
+
+	<div class="page-header">
+		<div class="h1" align="center" style="padding-top: 12px;padding-bottom: 30px;">{{competition.get(0).name}}</div>
+	
+	<tr ng-repeat="t in competitions">
+
+				
+				<td>{{t.name}}</td>
+				
+				
+				
+				
+
+			</tr>
+	</div>
+
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<td><select class="form-control" ng-change="show()"
+					ng-model="showParam" value="8" >
+						<option value="4">4</option>
+						<option selected="selected" value="8">8</option>
+						<option value="12">12</option>
+						<option value="16">16</option>
+				</select></td>
+				<td>Name</td>
+				<td>Location</td>
+				<td>Contact</td>
+				<td>Played Matches</td>
+				<td>Points</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="t in teams">
+
+				<td>{{t.position}}</td>
+				<td>{{t.name}}</td>
+				<td>{{t.location}}</td>
+				<td>{{t.contact}}</td>
+				<td>{{t.playedMatches}}</td>
+				<td>{{t.score}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+	<div class="btn-group pull-right">
+		<button ng-disabled="pageNum == 0" ng-click="go(-1)"
+			class="btn btn-primary">Prethodna</button>
+		<button ng-disabled="pageNum == totalPages - 1" ng-click="go(1)"
+			class="btn btn-primary">Sledeća</button>
+
+	</div>
+	<br> <br> <br>
+</div>

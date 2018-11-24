@@ -9,7 +9,6 @@
 	</parent>
 	<artifactId>Tracking-Records-of-football-matches</artifactId>
 	<packaging>war</packaging>
-	<name>WAFEPA</name>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>

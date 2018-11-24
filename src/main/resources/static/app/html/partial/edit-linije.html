@@ -1,0 +1,24 @@
+<div ng-controller="editLinijeCtrl">
+	<h1>Izmena Linije</h1>
+	<form class="row">
+	<div class="form-group">
+		<label for="brojMesta">Broj Mesta</label>
+		<input class="form-control" ng-model="novaLinija.brojMesta" id="brojMesta">
+	</div>
+	<div class="form-group">
+		<label for="cena">Cena</label>
+		<input class="form-control" ng-model="novaLinija.cena" id="cena">
+	</div>
+	<div class="form-group">
+		<label for="vremePolaska">Vreme polaska</label>
+		<input class="form-control" ng-model="novaLinija.vremePolaska" id="vremePolaska">
+	</div>
+	<div class="form-group">
+		<label for="destinacija">Destinacija</label>
+		<input class="form-control" ng-model="novaLinija.destinacija" id="destinacija">
+	</div>
+
+		<button class="btn btn-warning" ng-click="edit()">Sačuvaj izmenu</button>
+		<button class="btn btn-primary" ng-click="nazad()">Nazad</button>
+	</form>
+</div>
