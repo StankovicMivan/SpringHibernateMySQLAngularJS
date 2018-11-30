@@ -21,7 +21,7 @@ USE sportRecord;
 FLUSH PRIVILEGES;
 
 
-#Next features
+# Next features
 1. Write some JUnit test for few Repository class
 2. Setup AOP to make AddEvent without problem
 3. Setup Spring Security and implement inMemory Users
