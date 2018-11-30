@@ -23,6 +23,7 @@ import javaWebDevelopment.service.TeamService;
 import javaWebDevelopment.support.TeamDTOToTeam;
 import javaWebDevelopment.support.TeamTOTeamDTO;
 import javaWebDevelopment.web.dto.CompetitionDTO;
+import javaWebDevelopment.web.dto.EventDTO;
 import javaWebDevelopment.web.dto.TeamDTO;
 
 
@@ -39,19 +40,28 @@ public class ApiTeamController {
 	private TeamDTOToTeam toTeam;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<TeamDTO>> get(@RequestParam(defaultValue = "0") int pageNum,@RequestParam(defaultValue = "4") int showParam) {
+	public ResponseEntity<List<TeamDTO>> getPages(
+			@RequestParam(defaultValue = "0") int pageNum,
+			@RequestParam(defaultValue = "4") int showParam, 
+			@RequestParam Long competitionId) {
 
 		Page<Team> teams;
-		teams = teamService.findAll(pageNum, showParam);
+		teams = teamService.pretraga(competitionId, pageNum, showParam);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("totalPages", Integer.toString(teams.getTotalPages()));
 		return new ResponseEntity<>(toDTO.convert(teams.getContent()), headers, HttpStatus.OK);
 	}
-	
+	@RequestMapping(method = RequestMethod.GET,value="/{competitionId}")
+	public ResponseEntity<List<TeamDTO>> getList( @PathVariable Long competitionId) {
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ResponseEntity<TeamDTO> getOne(@PathVariable Long id) {
+		List<Team> teams;
+		teams = teamService.findByCompetitionId(competitionId);
+		return new ResponseEntity<>(toDTO.convert(teams), HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{competitionId}/{id}")
+	public ResponseEntity<TeamDTO> getOne(@PathVariable Long competitionId,@PathVariable Long id) {
 		Team team = teamService.findOne(id);
 
 		if (team == null) {
@@ -60,24 +70,48 @@ public class ApiTeamController {
 
 		return new ResponseEntity<>(toDTO.convert(team), HttpStatus.OK);
 	}
-//	@RequestMapping(method=RequestMethod.GET)
-//	public ResponseEntity<List<TeamDTO>> get(){
-//		List<Team> teams = teamService.findAll();
-//		return new ResponseEntity<>(toDTO.convert(teams), HttpStatus.OK);
-//	}
+
 
 	@RequestMapping(method=RequestMethod.POST)
-//	@PostMapping(value="/api/teams")
-	public ResponseEntity<TeamDTO> add(@RequestBody TeamDTO newTeam){
-
-		Team team = toTeam.convert(newTeam); 
-		teamService.save(team);
-
-		return new ResponseEntity<>(toDTO.convert(team),HttpStatus.CREATED);
+	public ResponseEntity<EventDTO> addEvent(@RequestBody EventDTO eventDTO){
+		System.out.println(eventDTO.getCompetitionId());
+		System.out.println(eventDTO.getFirstTeam());
+		System.out.println(eventDTO.getSecondTeam());
+		System.out.println(eventDTO.getScore());
+		Team team1 = teamService.findOne(eventDTO.getFirstTeam());
+		Team team2 = teamService.findOne(eventDTO.getSecondTeam());
+		if(eventDTO.getScore() ==1) {
+			team1.setPlayedMatches(team1.getPlayedMatches()+1);
+			team2.setPlayedMatches(team2.getPlayedMatches()+1);
+			team1.setScore(team1.getScore()+team1.getCompetition().getFormat().getVictory());
+		}else if(eventDTO.getScore() ==2) {
+			team1.setPlayedMatches(team1.getPlayedMatches()+1);
+			team2.setPlayedMatches(team2.getPlayedMatches()+1);
+			team2.setScore(team2.getScore()+team2.getCompetition().getFormat().getVictory());
+		}else if(eventDTO.getScore() ==3) {
+			team1.setPlayedMatches(team1.getPlayedMatches()+1);
+			team2.setPlayedMatches(team2.getPlayedMatches()+1);
+			team1.setScore(team1.getScore()+team1.getCompetition().getFormat().getUnsolved());
+			team2.setScore(team2.getScore()+team2.getCompetition().getFormat().getUnsolved());
+		}
+		teamService.save(team1);
+		teamService.save(team2);
+		
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
+//		
+	
+	
+//	@RequestMapping(method=RequestMethod.POST)
+//	public ResponseEntity<TeamDTO> add(@RequestBody TeamDTO newTeam){
+//
+//		Team team = toTeam.convert(newTeam); 
+//		teamService.save(team);
+//
+//		return new ResponseEntity<>(toDTO.convert(team),HttpStatus.CREATED);
+//	}
 	@RequestMapping(method=RequestMethod.PUT,value="/{id}")
-//	@PutMapping(value="/api/teams/{id}")
 	public ResponseEntity<TeamDTO> edit(
 			@PathVariable Long id,
 			@RequestBody TeamDTO changed){

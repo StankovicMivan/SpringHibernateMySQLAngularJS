@@ -1,4 +1,89 @@
-.icon-tr {
-    background-image: url("../icons/icon.png");
-    background-position: center center;
+
+body {
+	
+	background-color: #a5d2ae17;
+	
+}
+div .comment {
+	color:#0c0c0ca1;
+	margin-top: 3px;
+	margin-bottom:3px; 
+
+}
+
+.commetCom {
+	color:#000000;
+	
+}
+#commetDivShape {
+	max-width: 50%;
+ 
+    background: #cbb7d62e;
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#commetDivShape:before {
+      content: "";
+      position: absolute;
+      right: 100%;
+      top: 10px;
+      width: 0;
+      height: 0;
+      border-top: 13px solid transparent;
+      border-right: 26px solid #cbb7d62e;
+      border-bottom: 13px solid transparent;
+    }
+  
+#comRightDiv{
+	max-width: 50%;
+    float: right;
+}
+.col-md-2{
+	max-width: 100%;
+	padding-bottom: 20px;
+	position: inherit;
+}
+#inputName{
+	width: 87%;
+    float: left;
+}
+#inputButton {
+	width: 13%;
+    float: right;
+}
+#textareaComment{
+	width: 100%;
+}
+.bg-dark{
+	background-color: #353535 !important;
+}
+.sidebar {
+	background-color: #3f403ffc;
+}
+.sidebar .nav-item .nav-link {
+	color: lightgray;
+	display: contents;
+    width: 100%;
+    text-align: center;
+}
+#sidebarItemDiv {
+	margin-top: 5px;
+	background-color: #353535;
+	max-height: 6%;
+	 position: relative;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+a span {
+	margin-top:25px;
+	padding-left: 65px;
+}
+.table-light, .table-light > th, .table-light > td {
+	background-color: #e6e6e614;
+}
+#titleDiv {
+	text-align: center;
 }

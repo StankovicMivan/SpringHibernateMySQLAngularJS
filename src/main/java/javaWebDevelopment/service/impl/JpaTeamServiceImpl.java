@@ -2,13 +2,10 @@ package javaWebDevelopment.service.impl;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import javaWebDevelopment.model.Competition;
 import javaWebDevelopment.model.Team;
 import javaWebDevelopment.repository.TeamRepository;
 import javaWebDevelopment.service.TeamService;
@@ -20,8 +17,8 @@ public class JpaTeamServiceImpl implements TeamService{
 	private TeamRepository teamRepository;
 	
 	@Override
-	public Page<Team> findAll(int pageNum, int showParam) {	
-		return teamRepository.findAll(new PageRequest(pageNum, showParam));
+	public Page<Team> pretraga(Long competitionId, int pageNum, int showParam ) {	
+		return teamRepository.pretraga(competitionId, new PageRequest(pageNum, showParam));
 	}
 
 	@Override
@@ -47,17 +44,21 @@ public class JpaTeamServiceImpl implements TeamService{
 
 	@Override
 	public List<Team> findByCompetitionId(Long competitionId) {
-		return teamRepository.findByCompetitionId(competitionId, new PageRequest(1, 5));
+		return teamRepository.findByCompetitionId(competitionId);
 	}
 
-	@Override
-	public Page<Team> pretraga(Long competitionId, int page) {
-		return teamRepository.pretraga(competitionId, new PageRequest(page, 5) );
-	}
+
 
 	@Override
 	public List<Team> findAll() {	
 		return teamRepository.findAll();
 	}
+
+	@Override
+	public Page<Team> findAll(int pageNum, int showParam, Long competition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

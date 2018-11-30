@@ -27,7 +27,10 @@ public class Competition {
 	private String name;
 	@OneToMany(mappedBy="competition")
 	private List<Team> teams = new ArrayList<>();
-
+	
+	@OneToMany(mappedBy="comment")
+	private List<Comment> comments = new ArrayList<>();
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Format format;
 
@@ -66,6 +69,15 @@ public class Competition {
 		}
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	
 
 
 }

@@ -12,13 +12,13 @@ import javaWebDevelopment.model.Team;
 public interface TeamService {
 
 
-	Page<Team> findAll(int pageNum, int showParam);
+	Page<Team> findAll(int pageNum, int showParam, Long competition);
 	List<Team> findAll();
 	Team findOne(Long id);
 	void save(Team team);
 	void remove(Long id);
 	List<Team> findByCompetitionId(Long competitionId);
 	Page<Team> pretraga(
-			@Param("competitionId") Long competitionId, int page);
+			@Param("competitionId") Long competitionId, int pageNum, int showParam);
 
 }

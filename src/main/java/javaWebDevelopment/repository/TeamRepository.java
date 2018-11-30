@@ -20,7 +20,7 @@ import javaWebDevelopment.model.Team;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-		List<Team> findByCompetitionId(Long competitionId, Pageable pageRequest);
+		List<Team> findByCompetitionId(Long competitionId);
 	
 	@Query("SELECT t FROM Team t WHERE "
 			+ "(:competitionId IS NULL OR t.competition.id = :competitionId  ) "

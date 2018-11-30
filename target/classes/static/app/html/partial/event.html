@@ -1,0 +1,22 @@
+<div ng-controller="eventCtrl">
+	<div id="titleDiv" class="h1">Event details</div>
+	<form class="row">
+		<label for="firstTeamSelect">Select first team:</label> 
+		<select id="firstTeamSelect" class="form-control " ng-model="firstTeam"
+			ng-change="saveFlag()">
+			<option ng-repeat="t in teams" value="{{t.id}}">{{t.name}}</option>
+		</select> <br>
+		<label for="secondTeamSelect">Select second team:</label> 
+		<select id="secondTeamSelect" class="form-control " ng-model="secondTeam" ng-change="saveFlag()">
+			<option ng-repeat="t in teams" value="{{t.id}}">{{t.name}}</option>
+		</select> <br> <label for="scoreSelect">Select score:</label>
+		<select id="scoreSelect" class="form-control " ng-model="score" ng-change="saveFlag()">
+			<option value="1">First team won</option>
+			<option value="2">Second team won</option>
+			<option value="3">Drawn</option>
+		</select> <br>
+		<button ng-disabled="saveFlagBoolean" class="btn btn-warning"
+			ng-click="save()">Save</button>
+		<button class="btn btn-primary" ng-click="back()">Back</button>
+	</form>
+</div>
