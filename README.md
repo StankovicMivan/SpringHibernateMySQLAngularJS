@@ -9,7 +9,7 @@
 7. AngularJS v1.7.2 (https://angularjs.org/)
 8. Bootstrap v4.1.3 (https://getbootstrap.com/)
 9. (Not implemented) Spring AOP 4.1.8
-10.(Not implemented) Spring Security
+10. (Not implemented) Spring Security
 
 # Database schema
 
