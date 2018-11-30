@@ -8,7 +8,8 @@
 6. Tomcat 7.0.59
 7. AngularJS v1.7.2 (https://angularjs.org/)
 8. Bootstrap v4.1.3 (https://getbootstrap.com/)
-
+9. (Not implemented) Spring AOP 4.1.8
+10.(Not implemented) Spring Security
 
 # Database schema
 
@@ -20,3 +21,7 @@ USE sportRecord;
 FLUSH PRIVILEGES;
 
 
+#Next features
+1. Write some JUnit test for few Repository class
+2. Setup AOP to make AddEvent without problem
+3. Setup Spring Security and implement inMemory Users
